@@ -1,0 +1,45 @@
+body {
+    background-image: url("https://t4.ftcdn.net/jpg/02/86/32/13/360_F_286321335_NBvhp1nTWr6z6EQMVVWqHWWZvNmzFfqS.jpg");
+    background-size: cover;
+    font-family: 'Times New Roman', Times, serif;
+}
+h1{
+color: black;
+text-align: center;
+font-weight: bolder;
+padding-top: 30px;
+padding-bottom: 30px;
+}
+.center {
+color: black;
+margin: auto;
+width: 550px; 
+font-size: large;
+padding-bottom: 30px;
+}
+.row {
+color: black;
+margin: auto;
+width: 900px; 
+font-size: large;
+padding-bottom: 30px;
+}
+.form {
+padding-top: 10px;
+padding-bottom: 30px;
+}
+#sort_order, #selected_movie {
+font-size: medium;
+}
+.button {
+display: inline-block;
+padding: 5px 10px;
+background-color: whitesmoke;
+color: black;
+text-decoration: none;
+border-radius: 4px;
+transition: background-color 0.3s ease;
+}
+.button:hover {
+background-color: #f40f0f;
+}

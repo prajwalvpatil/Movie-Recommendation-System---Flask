@@ -1,0 +1,46 @@
+<!-- home.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page1.css') }}">
+</head>
+<body>
+    
+      <h1>MOVIE RECOMMENDATION SYSTEM</h1>
+
+<!-- Display the fetched data from the API -->
+    <div class="center">
+    
+    <div class="top">
+    <!-- Top rated Movies -->
+    <h2>#Top rated</h2>
+    {% for movie in movies %}
+    <h4>{{movie["title"]}} {{movie["year"]}}</h4>
+    {% endfor %}
+    </div>
+
+    <br><br><br>
+
+    <!-- Showing Trending Now Movie -->
+    <div class="trend">
+    <h2>#Trending Now</h2>
+    <h4>Title: {{ data['title'] }}</h4>
+    <h4>Release Date: {{ data['release_date'] }}</h4>
+    <h4>Original Language: {{ data['original_language'] }}</h4>
+    <h4>Overview: {{ data['overview'] }}</h4>
+    {% if imdb_url %}
+    <a href="{{ imdb_url }}">IMDB</a>
+    {% endif %}
+    </div>
+
+    <br><br>
+
+    <!-- Button to next page -->
+    <a href="/recommend" class="button">Get Started</a>
+    
+    </div>
+  
+</body>
+</html>

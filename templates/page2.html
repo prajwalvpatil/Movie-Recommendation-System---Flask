@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Movie Recommendation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page2.css') }}">
+</head>
+
+<body>
+    <h1>MOVIE RECOMMENDATION SYSTEM</h1>
+
+    <div class="center">
+        <div class="form">
+
+    <form action="/recommend" method="POST">
+
+        <label for="selected_movie">Select a movie:</label>
+        <br>
+        <select id="selected_movie" name="selected_movie">
+            {% for movie in movies %}
+                <option value="{{ movie }}">{{ movie }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br><br>
+
+        <label for="num_movies">Select number of movies to recommend:</label>
+        <input type="range" id="num_movies" name="num_movies" min="5" max="25" step="1" value="10" oninput="showSelectedValue(this.value)">
+        <span id="selected_value">10</span>     
+        
+        <br><br><br>
+
+        <label for="sort_order">Sort order:</label>
+        <select id="sort_order" name="sort_order">
+            <option value="desc">Descending</option>
+            <option value="asc">Ascending</option>
+        </select>
+
+        <br><br><br>
+        
+        <button type="submit" name="show_recommendation" class="button">Show Recommendation</button>
+    
+    </form>
+    </div>
+</div>
+
+    <!-- Recommendations will appear hear -->
+<div class="row justify-content-center">
+    <div class="col-4">
+      <h3>Movies suggested</h3>
+                {% for movie_name in recommended_movie_names %}
+                {% set movie = movie_data[movie_name] %}
+                <img src="{{ movie['cover_url'] }}" width="100" height="150" style="float:left;margin-right:10px">
+        <a href="{{ movie['imdb_url'] }}" target="_blank">{{ movie_name }}</a>
+        <br><br><br><br><br><br><br>
+        
+        {% endfor %}
+    </div>
+    <div class="col-4">
+      <h3>Rating</h3>
+      {% for movie_name in recommended_movie_names %}
+                {% set movie = movie_data[movie_name] %}
+                    <div class="rating">
+                        {% set imdb_id = movie_data[movie_name]['imdb_id'] %}
+                        {% set rating = get_imdb_rating(imdb_id) %}
+                        <p>({{ rating }}/10)</p>
+                        
+                    </div>
+                    <br><br><br><br><br><br><br>
+                {% endfor %}
+    </div>
+  </div>
+
+    <br><br>
+    <div class="center">
+        <a href="/" class="button">Home Page</a>
+    </div>
+    
+<script>
+    // function to show the number of movies selected
+    function showSelectedValue(value) {
+        document.getElementById('selected_value').textContent = value;
+    }
+</script>
+
+</body>
+</html>
